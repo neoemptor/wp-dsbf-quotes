@@ -1,0 +1,6 @@
+!dsbf-assets/
+!composer.json
+!*.php
+vendor/
+node_modules/
+

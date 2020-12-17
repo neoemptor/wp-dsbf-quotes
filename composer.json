@@ -1,0 +1,17 @@
+{
+    "name": "dsbf/quotes",
+    "description": "A quote alert system",
+    "type": "project",
+    "require": {
+        "monolog/monolog": "1.1.*",
+        "grpc/grpc": "^v1.30.0",
+        "google/protobuf": "^v3.3.0",
+        "google/cloud-firestore": "^v1.18.0"
+    },
+    "authors": [
+        {
+            "name": "Darren Bailey",
+            "email": "darrensb@iinet.net.au"
+        }
+    ]
+}
