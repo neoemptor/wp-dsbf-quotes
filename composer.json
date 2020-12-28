@@ -3,10 +3,7 @@
     "description": "A quote alert system",
     "type": "project",
     "require": {
-        "monolog/monolog": "1.1.*",
-        "grpc/grpc": "^v1.30.0",
-        "google/protobuf": "^v3.3.0",
-        "google/cloud-firestore": "^v1.18.0"
+        "ahsankhatri/firestore-php": "^2.0"
     },
     "authors": [
         {

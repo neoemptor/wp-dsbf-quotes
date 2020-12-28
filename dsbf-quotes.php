@@ -13,11 +13,24 @@
  *
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
+ * Currently plugin version.
+ * Start at version 1.0.0 and use SemVer - https://semver.org
+ * Rename this for your plugin and update it as you release new versions.
+ */
+define( 'PLUGIN_NAME_VERSION', '0.1.0' );
+
 global $wpdb;
 $dsbf_debug = false;
 define( 'STYLE_URI', plugin_dir_url( 'dsbf-quotes' ) );
 define( 'THE_PATH', STYLE_URI . 'dsbf-quotes/dsbf-assets/dsbf-style.css' );
 require_once 'firebase-helper-lib.php';
+include_once "dsbf-user-form.php";
 
 // ============= Scripts and Styles ===========================================
 function register_dsbf_scripts() {
@@ -67,8 +80,6 @@ function enqueue_dsbf_scripts() {
 	wp_enqueue_script( 'sweet-alert-script' );
 }
 
-include_once "dsbf-user-form.php";
-
 function dsbf_shortcodes_init() {
 	add_shortcode( 'dsbf-form', 'dsbf_show_form_shortcode' );
 }
@@ -96,20 +107,22 @@ function dsbf_shortcodes_init() {
 //		20
 //	);
 //}
-add_action( 'init', 'dsbf_shortcodes_init' );
 
+function activate_dsbf_quotes() {
 
-function activate() {
-
+//	add_action( "dsbf_add_test", "add_data", 10 );
 }
 
-register_activation_hook( __FILE__, 'dsbf_forms_activate' );
-
-function dsbf_activate_plugin() {
-
+function deactivate_dsbf_quotes() {
+	remove_action( 'wp_enqueue_scripts', 'enqueue_dsbf_styles' );
+	remove_action( 'wp_footer', 'enqueue_dsbf_scripts' );
+	remove_action('wp_ajax_nopriv_process_form_response', 'process_form_response');
+	remove_action( 'init', 'dsbf_shortcodes_init' );
 }
 
-register_activation_hook( __FILE__, 'dsbf_activate_plugin' );
+register_activation_hook( __FILE__, 'activate_dsbf_quotes' );
+register_deactivation_hook( __FILE__, 'deactivate_dsbf_quotes' );
 add_action( 'wp_enqueue_scripts', 'enqueue_dsbf_styles' );
-//remove_action( 'wp_head', 'enqueue_dsbf_scripts' );
 add_action( 'wp_footer', 'enqueue_dsbf_scripts' );
+add_action('wp_ajax_nopriv_process_form_response', 'process_form_response');
+add_action( 'init', 'dsbf_shortcodes_init' );

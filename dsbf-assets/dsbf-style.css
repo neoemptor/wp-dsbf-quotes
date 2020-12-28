@@ -1,10 +1,15 @@
-html {
+:root {
+    --utb-color-primary: #ff9900;
+    --utb-form-width: 90vw;
+}
+
+html, .quote-list-header {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .quote-form-container {
-    max-width: 800px;
-    width: 100%;
+    max-width: var(--utb-form-width);
+    width: var(--utb-form-width);
     height: 100%;
     background-color: white;
     box-shadow: 6px 6px 18px 0px rgba(0, 0, 0, 0.3);
@@ -40,14 +45,14 @@ html {
     font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
 }
 
-button {
-    background-color: #ff9900;
+button, #submit-quote {
+    background-color: var(--utb-color-primary) !important;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 5px !important;
     color: #fff;
     font-size: 1em;
     padding: 10px 15px;
-    margin: 0 0 20px 0;
+    margin: 20px 0 20px 0 !important;
 }
 
 .quote-form-container input:focus,
@@ -64,7 +69,7 @@ button {
     grid-template-columns: repeat(5, 1fr);
     border: 1px solid #aaa;
     min-width: auto;
-    max-width: auto;
+    max-width: 100%;
     width: auto;
     /* min-height: 100px; */
     /* max-height: 100px; */
@@ -86,10 +91,9 @@ button {
     background-color: #aaa;
 }
 
-.quote-list-item,
 .quote-list-header {
     min-width: auto;
-    max-width: auto;
+    max-width: 100%;
     width: auto;
     /* min-height: 25px; */
     max-height: 25px;
@@ -101,11 +105,11 @@ button {
 
 .quote-list-item {
     margin: 0;
-    padding: 0;
+    padding: 10px;
     border: 1px solid #eee;
     min-height: 20px;
-    max-height: 20px;
-    height: 20px;
+    max-height: 100%;
+    height: auto;
 }
 
 .quote-list-item input {
@@ -127,14 +131,11 @@ button {
 }
 
 .quote-item-add-button {
+    background-color: var(--utb-color-primary);
     min-width: 60px;
-    width: 100% !important;
+    /*width: 100% !important;*/
     height: auto;
-    max-height: 40px;
-}
-
-#submit-quote {
-    width: 100%;
+    /*max-height: 40px;*/
 }
 
 /* ============================================= TAB STYLING ============================================ */
@@ -144,8 +145,8 @@ button {
     overflow: hidden;
     /*border: 1px solid #ccc;*/
     background-color: #f1f1f1;
-    max-width: 800px;
-    width: 100%;
+    max-width: var(--utb-form-width);
+    width: var(--utb-form-width);
     margin-left: 50px;
     margin-right: 0;
     padding: 0 30px;
@@ -153,7 +154,7 @@ button {
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-    background-color: inherit;
+    background-color: #ccc !important;
     float: left;
     border: none;
     outline: none;
@@ -161,12 +162,12 @@ button {
     padding: 14px 16px;
     transition: 0.3s;
     color: black;
-    margin: 0;
+    margin: 10px !important;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #ddd !important;
 }
 
 /* Create an active/current tablink class */
@@ -184,4 +185,24 @@ button {
 
 #quote-section {
     display: none;
+}
+
+.qandc-container {
+    margin-left: 0 !important;
+    margin-right: auto;
+    width: var(--utb-form-width);
+    max-width: var(--utb-form-width);
+}
+
+@media screen and (max-width: 768px) {
+    .quote-list-item input, .quote-list-item textarea, .quote-list-header > div {
+        font-size: .5em !important;
+    }
+
+    .quote-list-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .quote-list-header-container {
+        display: none;
+    }
 }
